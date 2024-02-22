@@ -16,8 +16,10 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('pages.welcome');
-})->middleware('auth');
+    return view('pages.home', [
+        'title' => 'Home',
+    ]);
+})->name('home');
 
 // Login
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
