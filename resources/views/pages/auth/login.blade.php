@@ -14,15 +14,21 @@
                     <label for="username" class="font-medium text-sm">Usename</label>
                     <input type="text" id="username" name="username" placeholder="johndoe" value="{{ old('username') }}"
                         class="border border-gray-300 py-1 px-3 rounded-md focus:outline-none">
+                    @error('username')
+                        <p class="text-red-600 text-sm mb-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="flex flex-col gap-y-2 mb-3">
                     <label for="password" class="font-medium text-sm">Password</label>
-                    <input type="password" id="password" name="password" placeholder="******" value="{{ old('password') }}"
+                    <input type="password" id="password" name="password" placeholder="******"
                         class="border border-gray-300 py-1 px-3 rounded-md focus:outline-none">
+                    @error('password')
+                        <p class="text-red-600 text-sm mb-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="flex gap-x-2 items-center mb-4">
-                    <input type="checkbox" id="remember-me" name="remember-me" class="w-3 h-3">
-                    <label for="remember-me" class="text-gray-700 text-sm">Remember me</label>
+                    <input type="checkbox" id="remember" name="remember" class="w-3 h-3">
+                    <label for="remember" class="text-gray-700 text-sm">Remember me</label>
                 </div>
                 <button type="submit"
                     class="w-full bg-blue-600 font-semibold text-white text-center py-2 px-3 rounded-lg mb-4">Login</button>

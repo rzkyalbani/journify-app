@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container bg-zinc-50">
+    <div class="bg-zinc-50 min-h-screen">
         @yield('content')
     </div>
 </body>
