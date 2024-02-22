@@ -46,8 +46,9 @@
                     <div class="row-1 flex items-center">
                         <label for="profile_picture"
                             class="cursor-pointer relative rounded-sm outline outline-1 outline-neutral-200 p-1">
-                            <img src="https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg"
-                                alt="profile-picture">
+                            <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="profile-picture"
+                                id="current_profile_picture">
+                            <img alt="preveiw-image" class="img-preview hidden">
                             <span class="absolute right-0 bottom-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="blue" class="w-5 h-5">
@@ -58,27 +59,53 @@
                             </span>
                         </label>
                         <input type="file" class="hidden" name="profile_picture" id="profile_picture"
-                            placeholder="Upload">
+                            onchange="previewImage()">
+                        @error('profile_picture')
+                            <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
+                        @enderror
                     </div>
-                    
+
                     <div class="row-2">
                         <div class="flex flex-col gap-y-1 mb-3">
                             <label for="name" class="font-medium text-base">Full Name</label>
                             <input type="text" id="name" name="name" placeholder="johndoe"
                                 value="{{ $user->name }}"
                                 class="border border-gray-300 py-2 px-3 rounded-sm focus:outline-none">
+                            @error('name')
+                                <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="flex flex-col gap-y-1 mb-3">
                             <label for="username" class="font-medium text-base">Username</label>
                             <input type="text" id="username" name="username" placeholder="johndoe"
                                 value="{{ $user->username }}"
                                 class="border border-gray-300 py-2 px-3 rounded-sm focus:outline-none">
+                            @error('username')
+                                <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="flex flex-col gap-y-1 mb-3">
+                            <label for="password" class="font-medium text-base">Password</label>
+                            <input type="password" id="password" name="password" placeholder="******"
+                                class="border border-gray-300 py-2 px-3 rounded-sm focus:outline-none">
+                            @error('password')
+                                <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="flex flex-col gap-y-1 mb-4">
+                            <label for="password_confirmation" class="font-medium text-sm">Confirm Password</label>
+                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                placeholder="******" class="border border-gray-300 py-2 px-3 rounded-sm focus:outline-none">
+                            @error('password_confirmation')
+                                <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>
                 <button type="submit"
-                    class="w-full bg-blue-600 font-semibold text-white text-center py-2 px-3 rounded-sm mt-5">Save
-                    Changes</button>
+                    class="w-full bg-blue-600 font-semibold text-white text-center py-2 px-3 rounded-sm mt-5">
+                    Save Changes
+                </button>
             </form>
         </div>
     </div>

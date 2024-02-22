@@ -22,6 +22,8 @@
     <div class="bg-zinc-50 min-h-screen">
         @yield('content')
     </div>
+
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 </html>
