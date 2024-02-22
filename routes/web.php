@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Route::post('/store', [AuthController::class, 'store']);
 
 // Logout 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+
+// Profile Page
+Route::get('/profile', [UserController::class, 'index'])->middleware('auth');
+Route::post('/profile/update', [UserController::class, 'update'])->middleware('auth');

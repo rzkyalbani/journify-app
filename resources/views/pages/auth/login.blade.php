@@ -8,7 +8,7 @@
             <form action="" method="POST" class="mt-5">
                 @csrf
                 @if (session('loginError'))
-                    <p class="text-center text-red-600 text-sm mb-2"">{{ session('loginError') }}</p>
+                    <p class="text-red-600 text-sm mb-2"">{{ session('loginError') }}</p>
                 @endif
                 <div class="flex flex-col gap-y-2 mb-3">
                     <label for="username" class="font-medium text-sm">Usename</label>
