@@ -31,7 +31,7 @@
                     <label for="remember" class="text-gray-700 text-sm">Remember me</label>
                 </div>
                 <button type="submit"
-                    class="w-full bg-blue-600 font-semibold text-white text-center py-2 px-3 rounded-lg mb-4">Login</button>
+                    class="w-full bg-[#40A2E3] font-semibold text-white text-center py-2 px-3 rounded-lg mb-4">Login</button>
             </form>
             <p class="text-center text-sm">
                 Don't have an accout? <a href="/register" class="text-blue-600 underline hover:text-blue-950">Register</a>

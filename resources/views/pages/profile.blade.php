@@ -2,7 +2,7 @@
 
 @section('content')
     @include('components.navbar')
-    <div class="min-h-screen flex justify-center items-center">
+    <div class=" flex justify-center mt-12">
         <div class="flex flex-col w-full max-w-3xl bg-white px-8 py-6 rounded-md shadow gap-y-4">
             <div class="flex items-center gap-x-2 mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#40A2E3"
@@ -17,7 +17,7 @@
                     {{ session('updateSuccess') }}
                 </div>
             @endif
-            <form action="/profile/update" method="POST" enctype="multipart/form-data">
+            <form action="/profile" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-2 gap-5">
 

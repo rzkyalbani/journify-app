@@ -40,7 +40,7 @@
                     @enderror
                 </div>
                 <button type="submit"
-                    class="w-full bg-blue-600 font-semibold text-white text-center py-2 px-3 rounded-lg mb-4">Register</button>
+                    class="w-full bg-[#40A2E3] font-semibold text-white text-center py-2 px-3 rounded-lg mb-4">Register</button>
             </form>
             <p class="text-center text-sm">
                 Have an account? <a href="/login" class="text-blue-600 underline hover:text-blue-950">Login</a>
