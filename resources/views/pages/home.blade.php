@@ -1,4 +1,3 @@
-{{-- @dd($posts[1]->user->name); --}}
 @extends('layouts.main')
 
 @section('content')
@@ -17,7 +16,9 @@
                             <p class="text-xs font-medium">{{ $post->user->name }} <span class="font-normal">in</span>
                                 {{ $post->category->name }}</p>
                         </span>
-                        <h1 class="font-bold text-xl">{{ $post->title }}</h1>
+                        <h1 class="font-bold text-xl text-blue-400 hover:text-blue-600">
+                            <a href="/post/{{ $post->slug }}">{{ $post->title }}</a>
+                        </h1>
                         <p class="text-gray-600 text-sm font-light">
                             {{ $post->excerpt() }}
                         </p>

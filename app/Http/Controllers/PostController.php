@@ -12,6 +12,14 @@ use Illuminate\Validation\Rule;
 class PostController extends Controller
 {
 
+    public function show(Post $post)
+    {
+        return view('pages.posts.post', [
+            'title' => 'Post',
+            'post' => $post->load('user', 'category')
+        ]);
+    }
+
     public function create()
     {
         return view('pages.posts.create', [
@@ -81,7 +89,7 @@ class PostController extends Controller
 
         return redirect()->route('mypost', ['user' => $user])->with('updateSuccess', 'Post has been updated');
     }
-
+    
     public function destroy(Post $post)
     {
         $post->delete();
