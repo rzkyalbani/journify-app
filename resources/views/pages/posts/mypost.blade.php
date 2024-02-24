@@ -19,6 +19,11 @@
                 {{ session('updateSuccess') }}
             </span>
         @endif
+        @if (session('createSuccess'))
+            <span class="col-span-3 col-start-3 bg-green-500 text-white p-3 rounded-sm mb-8">
+                {{ session('createSuccess') }}
+            </span>
+        @endif
         @if (!Request::is('posts/' . Auth::user()->username))
             <div class="col-start-2 col-span-5 text-center mt-28">
                 <h1 class="text-3xl font-semibold text-neutral-400">Unfortunately you can't see other people's posts :(</h1>

@@ -24,7 +24,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('pages.home', [
         'title' => 'Home',
-        'posts' => Post::all()->load('user', 'category'),
+        'posts' => Post::orderBy('created_at', 'desc')->get()->load('user', 'category'),
         'categories' => Category::all()->load('posts')
     ]);
 })->name('home')->middleware('auth');
@@ -34,7 +34,7 @@ Route::get('/categories/{category:slug}', function(Category $category) {
     $posts = Post::where('category_id', $category->id)->get()->load('user', 'category');
     $categories = Category::all()->load('posts');
 
-    return view('pages.home', compact('posts', 'categories'));
+    return view('pages.home', compact('posts', 'categories'), ['title' => $category->name]);
 })->middleware('auth');
 
 // Search
@@ -67,6 +67,8 @@ Route::get('/profile', [UserController::class, 'index'])->middleware('auth');
 Route::post('/profile', [UserController::class, 'update'])->middleware('auth');
 
 // My Posts
+Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth');
+Route::post('/posts', [PostController::class, 'store'])->middleware('auth');
 Route::get('/posts/{user:username}', [UserController::class, 'mypost'])->middleware('auth')->name('mypost');
 Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->middleware('auth');
 Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->middleware('auth');

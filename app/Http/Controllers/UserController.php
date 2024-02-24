@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -20,23 +21,18 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        // return $request->file('profile_picture')->store('profile-pictures');
         $authedUser = Auth::user();
 
         $user = User::where('username', $authedUser->username)->first();
 
         $validate = $request->validate([
             'name' => ['required', 'min:8', 'max:255'],
-            'username' => ['required', 'string', 'min:6', 'max:255'],
+            'username' => ['required', 'string', 'min:6', 'max:255', Rule::unique('users')->ignore($user->id)],
             'profile_picture' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024']
         ]);
 
 
         $user->name = $request->name;
-
-        if ($request->username) {
-            $user->username = $request->username;
-        }
 
         if ($request->file('profile_picture')) {
             $user->profile_picture = $request->file('profile_picture')->store('profile-pictures');
@@ -55,7 +51,7 @@ class UserController extends Controller
     {
         return view('pages.posts.mypost', [
             'title' => $user->name,
-            'posts' => Post::where('user_id', Auth::user()->id)->get()
+            'posts' => Post::where('user_id', Auth::user()->id)->orderBy('total_likes', 'desc')->get()
         ]);
     }
 }
