@@ -1,12 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,17 +25,17 @@ Route::get('/', function () {
     return view('pages.home', [
         'title' => 'Home',
         'posts' => Post::all()->load('user', 'category'),
-        'categories' => Category::all()
+        'categories' => Category::all()->load('posts')
     ]);
-})->name('home');
+})->name('home')->middleware('auth');
 
 Route::get('/categories/{category:slug}', function(Category $category) {
 
     $posts = Post::where('category_id', $category->id)->get()->load('user', 'category');
-    $categories = Category::all();
+    $categories = Category::all()->load('posts');
 
     return view('pages.home', compact('posts', 'categories'));
-});
+})->middleware('auth');
 
 // Search
 Route::get('/search', function (Request $request) {
@@ -42,7 +44,7 @@ Route::get('/search', function (Request $request) {
         ->orWhere('body', 'like', '%' . $keyword . '%')
         ->get()
         ->load('user', 'category');
-    $categories = Category::all();
+    $categories = Category::all()->load('posts');
 
     return view('pages.home', compact('posts', 'categories'));
 });
@@ -63,3 +65,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 // Profile Page
 Route::get('/profile', [UserController::class, 'index'])->middleware('auth');
 Route::post('/profile', [UserController::class, 'update'])->middleware('auth');
+
+// My Posts
+Route::get('/posts/{user:username}', [UserController::class, 'mypost'])->middleware('auth')->name('mypost');
+Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->middleware('auth');
+Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->middleware('auth');

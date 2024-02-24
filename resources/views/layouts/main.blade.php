@@ -16,14 +16,26 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
+    {{-- Trix --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
+    <script src="{{ asset('js/trix.js') }}" type="text/javascript"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="bg-zinc-50 min-h-screen" id="app">
+
+    <div class="bg-zinc-50 min-h-screen">
         @yield('content')
     </div>
 
     <script src="{{ asset('js/script.js') }}"></script>
+
 </body>
 
 </html>

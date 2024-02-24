@@ -109,6 +109,16 @@ class DatabaseSeeder extends Seeder
                 'image' => 'posts-images/1.webp',
                 'total_likes' => 0,
                 'created_at' => now()
+            ],
+            [
+                'user_id' => 2,
+                'category_id' => 9,
+                'title' => 'Judul Tiga',
+                'slug' => 'judul-tiga',
+                'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro rem quia dolore aut reiciendis cumque excepturi dolorem, sint fugiat nisi! Blanditiis assumenda velit minus modi, laboriosam corrupti excepturi soluta officia sapiente vero aliquam aspernatur quidem, hic sed natus ullam corporis magni dolorem quibusdam incidunt maiores optio. Ab distinctio labore corrupti vero voluptatum illo cumque a, laborum porro repellendus itaque dignissimos. Vel in porro voluptatum quaerat ipsa voluptates ex ullam recusandae ratione rem molestiae ut vitae repellendus harum quam, accusamus quos.',
+                'image' => 'posts-images/2.jpg',
+                'total_likes' => 120,
+                'created_at' => now()
             ]
         ]);
     }

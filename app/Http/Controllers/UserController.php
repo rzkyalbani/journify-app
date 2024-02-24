@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,5 +49,13 @@ class UserController extends Controller
         $user->update();
 
         return redirect('/profile')->with('updateSuccess', 'Profile updated successfully');
+    }
+
+    public function mypost(User $user) 
+    {
+        return view('pages.posts.mypost', [
+            'title' => $user->name,
+            'posts' => Post::where('user_id', Auth::user()->id)->get()
+        ]);
     }
 }

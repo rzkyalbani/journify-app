@@ -1,4 +1,4 @@
-function previewImage() {
+function previewImageProfile() {
   const image = document.querySelector('#profile_picture');
   const currentProfilePicture = document.querySelector('#current_profile_picture');
   const previewImage = document.querySelector('.img-preview');
@@ -12,3 +12,7 @@ function previewImage() {
     previewImage.classList.remove('hidden');
   }
 }
+
+document.addEventListener('trix-file-accept', function(e) {
+  e.preventDefault();
+})

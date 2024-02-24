@@ -4,7 +4,7 @@
     </h3>
     <div class="flex items-center gap-8 text-zinc-300">
         @auth
-            <a href="#" class="text-white hover:text-gray-300 flex gap-x-1 items-center text-sm">
+            <a href="/posts/{{ Auth::user()->username }}" class="text-white hover:text-gray-300 flex gap-x-1 items-center text-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"

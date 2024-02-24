@@ -20,29 +20,6 @@
             <form action="/profile" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-2 gap-5">
-
-
-                    {{-- <div class="row-2">
-                        <div class="flex flex-col gap-y-1 mb-3">
-                            <label for="password" class="font-medium text-base">Password</label>
-                            <input type="password" id="password" name="password" placeholder="******" value="tes"
-                                class="border border-gray-300 py-2 px-3 rounded-sm focus:outline-none"
-                                value="{{ $user->password }}">
-                            @error('password')
-                                <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="flex flex-col gap-y-1 mb-4">
-                            <label for="password_confirmation" class="font-medium text-sm">Confirm Password</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation"
-                                placeholder="******" class="border border-gray-300 py-2 px-3 rounded-sm focus:outline-none"
-                                value="{{ $user->password }}">
-                            @error('password_confirmation')
-                                <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div> --}}
-
                     <div class="row-1 flex items-center">
                         <label for="profile_picture"
                             class="cursor-pointer relative rounded-sm outline outline-1 outline-neutral-200 p-1">
@@ -58,7 +35,7 @@
                             </span>
                         </label>
                         <input type="file" class="hidden" name="profile_picture" id="profile_picture"
-                            onchange="previewImage()">
+                            onchange="previewImageProfile()">
                         @error('profile_picture')
                             <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
                         @enderror

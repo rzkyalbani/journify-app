@@ -12,7 +12,8 @@
     @foreach ($categories as $category)
         <div class="flex flex-col gap-y-2">
             <span class="text-sm font-light">
-                <a href="/categories/{{ $category->slug }}" class="text-blue-600 hover:text-blue-800 {{ Request::is('categories/'.$category->slug) ? 'text-black' : '' }}">
+                <a href="/categories/{{ $category->slug }}"
+                    class="{{ Request::is('categories/' . $category->slug) ? 'text-black hover:text-black' : 'text-blue-600 hover:text-blue-800' }}">
                     {{ $category->name }}
                     <span class="text-black hover:text-black">{{ '(' . $category->posts->count() . ')' }}</span>
                 </a>

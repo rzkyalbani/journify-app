@@ -33,7 +33,7 @@
                             </span>
                         </small>
                     </div>
-                    <img src="{{ asset('images/assassination-classroom.webp') }}" width="250">
+                    <img src="{{ asset('storage/' . $post->image ) }}" width="250">
                 </div>
             @endforeach
         </div>
