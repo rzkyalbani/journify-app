@@ -35,7 +35,7 @@
                             </span>
                         </label>
                         <input type="file" class="hidden" name="profile_picture" id="profile_picture"
-                            onchange="previewImageProfile()">
+                            onchange="previewImage('current_profile_picture', 'profile_picture')">
                         @error('profile_picture')
                             <p class="text-red-600 text-xs mb-2">{{ $message }}</p>
                         @enderror

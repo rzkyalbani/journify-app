@@ -11,6 +11,12 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -23,6 +29,10 @@ class Post extends Model
 
     public function excerpt()
     {
-        return Str::limit($this->body, 150, '...');
+        // return Str::limit($this->body ,150, '...');
+        $body = $this->body;
+        $excerpt = "..." . substr($body, 20, 150) . "...";
+
+        return $excerpt;
     }
 }

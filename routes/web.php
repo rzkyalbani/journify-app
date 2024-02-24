@@ -70,3 +70,4 @@ Route::post('/profile', [UserController::class, 'update'])->middleware('auth');
 Route::get('/posts/{user:username}', [UserController::class, 'mypost'])->middleware('auth')->name('mypost');
 Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->middleware('auth');
 Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->middleware('auth');
+Route::put('/post/{post:slug}', [PostController::class, 'update'])->middleware('auth');

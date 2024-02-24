@@ -4,9 +4,19 @@
 @section('content')
     @include('components.navbar')
     <div class="px-16 mt-12 grid grid-cols-7">
+        @if (session('editError'))
+            <span class="col-span-3 col-start-3 bg-red-500 text-white p-3 rounded-sm mb-8">
+                {{ session('editError') }}
+            </span>
+        @endif
         @if (session('deleteSuccess'))
             <span class="col-span-3 col-start-3 bg-red-500 text-white p-3 rounded-sm mb-8">
-                Post has been deleted
+                {{ session('deleteSuccess') }}
+            </span>
+        @endif
+        @if (session('updateSuccess'))
+            <span class="col-span-3 col-start-3 bg-green-500 text-white p-3 rounded-sm mb-8">
+                {{ session('updateSuccess') }}
             </span>
         @endif
         @if (!Request::is('posts/' . Auth::user()->username))
@@ -31,7 +41,7 @@
                                     {{ $post->excerpt() }}
                                 </p>
                                 <small class="text-xs font-extralight mt-3 flex justify-between items-center">
-                                    <span>{{ $post->created_at->format('M d, Y') }}</span>
+                                    <span>{{ $post->updated_at ? $post->updated_at->format('M d, Y') : $post->created_at->format('M d, Y') }}</span>
                                     <span class="px-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width=".5" stroke="currentColor" class="w-5 h-5 inline">
@@ -45,7 +55,8 @@
                             <img src="{{ asset('storage/' . $post->image) }}" width="250">
                         </div>
                         <div class="mb-12 mt-5 flex items-center justify-end gap-x-3 jsu">
-                            <a href="/posts/{{ $post->slug }}/edit" class="px-3 py-1 bg-yellow-500 text-white rounded-sm text-sm font-medium">
+                            <a href="/posts/{{ $post->slug }}/edit"
+                                class="px-3 py-1 bg-yellow-500 text-white rounded-sm text-sm font-medium">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">
                                     <path stroke-linecap="round" stroke-linejoin="round"

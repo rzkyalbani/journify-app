@@ -22,7 +22,7 @@
                             {{ $post->excerpt() }}
                         </p>
                         <small class="text-xs font-extralight mt-3 flex justify-between items-center">
-                            <span>{{ $post->created_at->format('M d, Y') }}</span>
+                            <span>{{ $post->updated_at ? $post->updated_at->format('M d, Y') : $post->created_at->format('M d, Y') }}</span>
                             <span class="px-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width=".5"
                                     stroke="currentColor" class="w-5 h-5 inline">
